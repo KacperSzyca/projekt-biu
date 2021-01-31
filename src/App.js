@@ -14,6 +14,7 @@ import MainPage from "./pages";
 import NotFoundPage from "./pages/404";
 import LoginPage from "./pages/login"
 import RegisterPage from "./pages/Register";
+import MovieInfo from "./components/MovieInfo";
 
 class App extends Component {
     render(){
@@ -39,6 +40,7 @@ class App extends Component {
            <Route exact path="/" component={MainPage}/>
            <Route exact path="/login" component={LoginPage}/>
            <Route exact path="/register" component={RegisterPage}/>
+           <Route exact path="/movieInfo/:id" component={MovieInfo}/>
            <Route exact path="/404" component={NotFoundPage}/>
            <Redirect to="/404"/>
            </Switch>

@@ -1,7 +1,8 @@
 import React, {useState, useRef, useCallback} from 'react';
-import FetchMovies from "./FetchMovies";
+import FetchMovies from "../fetchData/FetchMovies";
 import Movie from "../components/Movie"
 import InfiniteScroll from "react-infinite-scroll-component";
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -31,14 +32,18 @@ export default function MainPage() {
 
     return (
         <div className="outerMain">
-            <input type="text" value={query} onChange={handleSearch}></input>
+            <TextField id="outlined-basic" label="Search" value={query} onChange={handleSearch}  className="search" variant="outlined" />
         <div className="innerMain">
-
-            <InfiniteScroll next={() => setPageNumber(pageNumber + 1)} hasMore={true}  dataLength={movies.length} loader={<h4>Loading...</h4>}>
+            <InfiniteScroll
+                next={() => setPageNumber(pageNumber + 1)}
+                hasMore={true}
+                dataLength={movies.length}
+                loader={<h4>Loading...</h4>}
+            >
                 <div className="movie-container">
-                {movies.length > 0 && movies.map((movie, index) =>
-                   <Movie key={movie.id} data={movie}/>
-                )}
+                    {movies.length > 0 && movies.map((movie, index) =>
+                       <Movie key={movie.id} data={movie}/>
+                    )}
                 </div>
             </InfiniteScroll>
          </div>
