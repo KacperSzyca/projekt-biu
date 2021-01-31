@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import login from "../pages/login";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 export default function FetchImages(id) {
@@ -29,26 +28,4 @@ export default function FetchImages(id) {
     })
 
     return {  images }
-}
-
-class Image {
-    constructor(original) {
-        this._original = 'https://image.tmdb.org/t/p/w1280' + original;
-    }
-
-    get original() {
-        return this._original;
-    }
-
-    set original(value) {
-        this._original = value;
-    }
-
-    get thumbnail() {
-        return this._thumbnail;
-    }
-
-    set thumbnail(value) {
-        this._thumbnail = value;
-    }
 }
