@@ -33,6 +33,7 @@ export default function MovieInfo(props) {
                 <div className="movieHeader">
                     <img src={"https://image.tmdb.org/t/p/original/" + movie.backdrop_path} alt={movie.title}/>
                     <div className='movieInfo'>
+                        {movie.popularity > 200? <h5 style={{color: "gold"}}>Popular Film</h5>: ""}
                         <h1>{movie.title}</h1>
                         <div className='details'>
                             <p>Release date: {movie.release_date}</p>
@@ -58,10 +59,9 @@ export default function MovieInfo(props) {
                     {video.length > 0 ?
                         (<div className='movieVideo'>
                             <h2>Trailer</h2>
-                            <ReactPlayer url={video}/>
+                            <ReactPlayer url={video} width="100%"/>
                         </div>) : ""
                     }
-
                 </div>
             </div>
         </div>
@@ -95,6 +95,8 @@ function getMainActors(cast) {
     })
     return actors;
 }
+
+
 
 
 
