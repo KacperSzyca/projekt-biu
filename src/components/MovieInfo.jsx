@@ -50,12 +50,18 @@ export default function MovieInfo(props) {
                     <Actor key={actor.id} data={actor}/>
                 )}
                 <div className="moviesVideos">
-                    <div className='gallery'>
-                        <ImageGallery items={images}/>
-                    </div>
-                    <div className='movieVideo'>
-                        <ReactPlayer url={video}/>
-                    </div>
+                    {images.length > 0 ?
+                        <div className='gallery'>
+                            <h2>Gallery</h2>
+                            <ImageGallery items={images}/>
+                        </div> : ""}
+                    {video.length > 0 ?
+                        (<div className='movieVideo'>
+                            <h2>Trailer</h2>
+                            <ReactPlayer url={video}/>
+                        </div>) : ""
+                    }
+
                 </div>
             </div>
         </div>
@@ -90,16 +96,5 @@ function getMainActors(cast) {
     return actors;
 }
 
-// (0.5 pkt) Tytuł filmu +
-// (1 pkt) Zdjęcie/plakat filmu +
-// (1 pkt) Opis filmu +
-// (0.5 pkt) Data premiery +
-// (1 pkt) Wymieniony gatunek filmów +
-// (0.5 pkt) Wymienienie reżysera +
-// (1 pkt) Wyświetlenie głównych aktorów +
-// (0.5 pkt) Odnośnik do strony w serwisie https://www.themoviedb.org +
-//     (1 pkt) Średnia ocen z tego filmu (z ilością oddanych głosów) +
-// (2 pkt) Możliwość obejrzenia galerii scen z tego filmu
-// (4 pkt) Możliwość obejrzenia zwiastunu tego filmu +
 
 

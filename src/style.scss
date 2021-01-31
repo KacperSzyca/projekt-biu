@@ -163,14 +163,19 @@ html {
     color: #7f7d7d;
   }
 }
-.movieVideo {
-  margin: auto;
-}
-.gallery {
-  width: 80%;
-  margin: auto;
-}
+
 .moviesVideos {
   justify-content: center;
   text-align: center;
+
+  .movieVideo {
+    margin: auto;
+    width: 33%;
+    margin-top: 80px;
+  }
+  .gallery {
+    width: 50%;
+    margin: auto;
+    margin-top: 80px;
+  }
 }
