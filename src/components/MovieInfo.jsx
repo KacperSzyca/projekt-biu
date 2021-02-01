@@ -8,7 +8,6 @@ import FetchVideo from "../fetchData/FetchVideo";
 import FetchImages from "../fetchData/FetchImages";
 import ImageGallery from "react-image-gallery";
 import { Rating } from '@material-ui/lab';
-import PostRating from "../PostData/PostRating";
 
 
 export default function MovieInfo(props) {
