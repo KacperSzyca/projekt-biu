@@ -1,16 +1,20 @@
 import React, {useState} from "react";
 import ReactPlayer from "react-player";
 import Actor from "./Actor";
+import axios from 'axios'
 import FetchDetails from "../fetchData/FetchDetails";
 import FetchCredits from "../fetchData/FetchCredits";
 import FetchVideo from "../fetchData/FetchVideo";
 import FetchImages from "../fetchData/FetchImages";
 import ImageGallery from "react-image-gallery";
+import { Rating } from '@material-ui/lab';
+import PostRating from "../PostData/PostRating";
 
 
 export default function MovieInfo(props) {
     const [id] = useState(props.match.params.id);
     const {video} = FetchVideo(id)
+    const [api_key] = React.useState("2d6ad82fcaf4bba35b7dac301e918cf2");
 
     const {
         movie,
@@ -26,6 +30,22 @@ export default function MovieInfo(props) {
         images
     } = FetchImages(id)
 
+    const options = {
+        headers: 'application/json'
+    };
+
+    function handleRatingChange(value) {
+        console.log((value.target.defaultValue)*2);
+
+        axios({
+            method: 'POST',
+            url: 'https://api.themoviedb.org/3/movie/' + id + '/rating',
+            params: {api_key: api_key},
+            data: { value: `${(value.target.defaultValue)*2}`},
+        }).then(res => {
+            console.log("juhu")
+        })
+    }
 
     return (
         <div className="outerMain" style={{marginTop: 100}}>
@@ -44,6 +64,12 @@ export default function MovieInfo(props) {
                         <a href={"https://www.themoviedb.org/movie/ " + movie.id}>
                             <h7>See at the movie db</h7>
                         </a>
+                        <h3>Rate this film</h3>
+                        <Rating name="size-large"
+                                defaultValue={2}
+                                size="large"
+                                onChange={handleRatingChange}
+                                precision={0.5}/>
                     </div>
                 </div>
                 <h2> Main Actors</h2>
@@ -75,6 +101,7 @@ function showGenres(genres) {
         return "Genres: " + genres.map(genre => " " + genre.name);
     }
 }
+
 
 function getDirector(crew) {
     var directors = [];
